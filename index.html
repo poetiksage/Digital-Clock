@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Digital Clock by Nilesh</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box
+            }
+
+            body {
+                min-height: 100vh;
+                background: #222;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center
+            }
+
+            span {
+                font: 400 100px/1.5em Orbitron, sans-serif;
+                margin: 20px;
+                position: relative        
+            }
+
+        </style>
+    </head>
+    <body>
+        
+        <div class="container">
+            <div class="clock">
+                <span id="hours">12</span>
+                <span>:</span>
+                <span id="minutes">13</span>
+                <span>:</span>
+                <span id="seconds">00</span>
+                <span id="am-or-pm">AM</span>
+            </div>
+        </div>
+        <script>
+
+            function updateTime() {
+                var dateTime = new Date();
+                var hours = dateTime.getHours();
+                var minutes = dateTime.getMinutes();
+                var seconds = dateTime.getSeconds();
+                var am_pm = document.getElementById('am-or-pm');
+
+                if (hours >= 12) {
+                    am_pm.innerHTML = "PM";
+                }
+
+                else {
+                    am_pm.innerHTML = "AM";
+                }
+
+                if (hours > 12) {
+                    hours = hours - 12;
+                }
+
+                if (hours < 12) {
+                    hours = "0" + hours;
+                }
+
+                if (minutes < 10) {
+                    minutes = "0" + minutes;
+                }
+
+                if (seconds < 10) {
+                    seconds = "0" + seconds;
+                }
+
+                document.getElementById("hours").innerHTML = hours;
+                document.getElementById("minutes").innerHTML = minutes;
+                document.getElementById("seconds").innerHTML = seconds;
+            }
+
+            setInterval(updateTime, 1000);
+
+        </script>
+    </body>
+</html>
